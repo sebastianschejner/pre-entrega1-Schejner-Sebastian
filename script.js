@@ -1,9 +1,13 @@
+NoteApp()
+
+function NoteApp(){
 
 let preguntar = "";
 let nota = "";
 
 
-preguntar = prompt( " escriba lista o nota");
+
+preguntar = prompt( "Escriba LISTA si desea escribir una lista o NOTA si desea escribir una nota");
 
 if(preguntar.toLocaleLowerCase() =="nota"){
     nota = prompt('escriba aqui su nota');
@@ -13,20 +17,27 @@ if(preguntar.toLocaleLowerCase() =="nota"){
     const lista2 = addToList(valor)
     alert(`su lista es ${lista2.join(`-`)}`);
 }else{ 
-    alert('introduzca otra cosa')
+    alert('Introduzca un valor correcto')
+    NoteApp()
+    
 }
 
+//Funcion Añadir elemento a la lista
 
 function addToList(v){
-    let lista = [];
+    const lista = [];
     lista.push(v)
-    while (confirm('desea anadir otro elemento?') == true){
-        v = prompt (`anadir elemento a la lista`);
+    while (confirm('¿Desea añadir otro elemento a su lista?') == true){
+        v = prompt (`Añadir elemento a la lista`);
+        if(v== ""){
+            alert(`Por favor escriba el elemento que desea añadir a su lista`)   
+        }else{
         lista.push(v);
+    }
     }
     return lista;
 }
 
 
-
+}
 
