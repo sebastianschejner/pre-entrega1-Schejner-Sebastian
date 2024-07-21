@@ -10,10 +10,16 @@ let nota = "";
 preguntar = prompt( "Escriba LISTA si desea escribir una lista o NOTA si desea escribir una nota");
 
 if(preguntar.toLocaleLowerCase() =="nota"){
-    nota = prompt('escriba aqui su nota');
-    alert(`su nota es ${nota}`);
+    nota = prompt('Escriba aqui su nota')
+    if (nota == ""){
+        alert(`Por favor intente escribir su nota nuevamente`)
+        NoteApp()
+    }else{
+        alert(`su nota es ${nota}`);
+    }
+   
 }else if(preguntar.toLowerCase()== "lista"){
-    valor = prompt (`anadir elemento a la lista`);
+    valor = prompt (`Añadir elemento a la lista`);
     const lista2 = addToList(valor)
     alert(`su lista es ${lista2.join(`-`)}`);
 }else{ 
