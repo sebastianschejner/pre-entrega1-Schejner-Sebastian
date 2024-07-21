@@ -1,49 +1,49 @@
-NoteApp()
+(function NoteApp() {
+    let preguntar = prompt("Escriba LISTA si desea escribir una lista o NOTA si desea escribir una nota");
 
-function NoteApp(){
-
-let preguntar = "";
-let nota = "";
-
-
-
-preguntar = prompt( "Escriba LISTA si desea escribir una lista o NOTA si desea escribir una nota");
-
-if(preguntar.toLocaleLowerCase() =="nota"){
-    nota = prompt('Escriba aqui su nota')
-    if (nota == ""){
-        alert(`Por favor intente escribir su nota nuevamente`)
-        NoteApp()
-    }else{
-        alert(`su nota es ${nota}`);
+    if (preguntar === null) {
+        return; 
     }
-   
-}else if(preguntar.toLowerCase()== "lista"){
-    valor = prompt (`Añadir elemento a la lista`);
-    const lista2 = addToList(valor)
-    alert(`su lista es ${lista2.join(`-`)}`);
-}else{ 
-    alert('Introduzca un valor correcto')
-    NoteApp()
-    
-}
 
-//Funcion Añadir elemento a la lista
+    preguntar = preguntar.toLowerCase();
 
-function addToList(v){
-    const lista = [];
-    lista.push(v)
-    while (confirm('¿Desea añadir otro elemento a su lista?') == true){
-        v = prompt (`Añadir elemento a la lista`);
-        if(v== ""){
-            alert(`Por favor escriba el elemento que desea añadir a su lista`)   
-        }else{
-        lista.push(v);
+    if (preguntar === "nota") {
+        let nota = prompt('Escriba aquí su nota');
+        if (nota === "") {
+            alert(`Por favor intente escribir su nota nuevamente`);
+            NoteApp(); 
+        }else if(nota === null){
+            NoteApp()
+        }else {
+            alert(`Su nota es: ${nota}`);
+        }
+    } else if (preguntar === "lista") {
+        const lista = addToList(); 
+        alert(`Su lista es: ${lista.join('-')}`);
+    } else {
+        alert('Introduzca un valor correcto (LISTA o NOTA)');
+        NoteApp(); 
     }
+
+    // Función para añadir elementos a la lista
+    function addToList() {
+        const lista = [];
+        
+        while (true) {
+            let valor = prompt(`Añadir elemento a la lista`);
+            if (valor === null) {
+                NoteApp(); 
+            }
+            if (valor === "") {
+                alert(`Por favor escriba el elemento que desea añadir a su lista`);
+                continue; 
+            }
+            lista.push(valor);
+            if (!confirm('¿Desea añadir otro elemento a su lista?')) {
+                break; 
+            }
+        }
+        
+        return lista;
     }
-    return lista;
-}
-
-
-}
-
+})();
